@@ -10,39 +10,37 @@ import SwiftUI
 import Foundation
 
 struct AddDotoView: View {
-    @Binding var modalOpen: Bool
-    @Binding var dotos: [Doto]
-    @State var name: String = ""
-    @State var description: String = ""
+    @State var title: String = ""
+    @State var content: String = ""
+    @State var date: Date = Date()
+    @State var alertOpen: Bool = false
+    let onComplete: (String, String, Date) -> Void
     
     var body: some View {
-        VStack(alignment: .leading) {
-            VStack {
-                Text("Add Doto").font(.largeTitle).fontWeight(.bold).padding()
-            }
-            .padding(.top)
-            
-            Form {
-                Section(header: Text("CREATE A NEW DOTO BY FILLING THE FIELDS BELOW:")) {
-                    TextField("Name", text: $name)
-                    TextField("Description", text: $description)
-                }
-                
-                Section {
-                    Button(action: {
-                        self.dotos.append(Doto(id: UUID(), title: self.name, description: self.description, date: Date()))
-                        self.modalOpen.toggle()
-                    }) {
-                        Text("Submit").foregroundColor(.green)
-                    }
-
-                    Button(action: {
-                        self.modalOpen.toggle()
-                    }) {
-                        Text("Go Back").foregroundColor(.red)
+        NavigationView {
+            VStack(alignment: .leading) {
+                Form {
+                    Section(header: Text("CREATE A NEW DOTO BY FILLING THE FIELDS BELOW:")) {
+                        TextField("Title", text: $title)
+                        TextField("Description", text: $content)
                     }
                 }
             }
+            .navigationBarTitle(Text("Add Doto"), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: addDotoAction) {
+                Text("Create").foregroundColor(.green)
+                }.alert(isPresented: self.$alertOpen) {
+                    Alert(title: Text("Empty title!"), message: Text("The title field cannot be empty. Please enter some text for the Doto title."), dismissButton: .default(Text("OK")))
+                }
+            )
+        }
+    }
+    
+    private func addDotoAction() {
+        if title.isEmpty {
+            self.alertOpen = true
+        } else {
+            onComplete(title, content, date)
         }
     }
 }

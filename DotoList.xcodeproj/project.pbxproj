@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190D573D24EE9CCB0090C30C /* Doto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190D573C24EE9CCB0090C30C /* Doto.swift */; };
 		1985659624ED6B820031588C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985659524ED6B820031588C /* AppDelegate.swift */; };
 		1985659824ED6B820031588C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985659724ED6B820031588C /* SceneDelegate.swift */; };
 		1985659A24ED6B820031588C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985659924ED6B820031588C /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190D573C24EE9CCB0090C30C /* Doto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doto.swift; sourceTree = "<group>"; };
 		1985659224ED6B820031588C /* DotoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1985659524ED6B820031588C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1985659724ED6B820031588C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				1985659524ED6B820031588C /* AppDelegate.swift */,
 				1985659724ED6B820031588C /* SceneDelegate.swift */,
 				1985659924ED6B820031588C /* ContentView.swift */,
+				190D573C24EE9CCB0090C30C /* Doto.swift */,
 				19E0DBFF24EE5F9B00FA7F50 /* DotoRow.swift */,
 				19E0DBFD24EE5E4600FA7F50 /* AddDotoView.swift */,
 				1985659B24ED6B880031588C /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 				1985659624ED6B820031588C /* AppDelegate.swift in Sources */,
 				1985659824ED6B820031588C /* SceneDelegate.swift in Sources */,
 				19E0DBFE24EE5E4600FA7F50 /* AddDotoView.swift in Sources */,
+				190D573D24EE9CCB0090C30C /* Doto.swift in Sources */,
 				1985659A24ED6B820031588C /* ContentView.swift in Sources */,
 				19E0DC0024EE5F9B00FA7F50 /* DotoRow.swift in Sources */,
 			);

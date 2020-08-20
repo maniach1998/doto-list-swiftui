@@ -23,7 +23,7 @@ struct DotoRow: View {
             VStack(alignment: .leading) {
                 Text(doto.title).font(.headline)
                 Spacer()
-                Text(doto.description).font(.subheadline).fontWeight(.light).foregroundColor(.gray)
+                Text(doto.content).font(.subheadline).fontWeight(.light).foregroundColor(.gray)
             }
             Spacer()
             Text("\(doto.date, formatter: Self.dateFormat)").fontWeight(.light)
