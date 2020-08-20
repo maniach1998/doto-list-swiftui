@@ -7,17 +7,24 @@
 
 import SwiftUI
 
-// swiftlint:disable multiple_closures_with_trailing_closure
 struct ContentView: View {
     
-    @State var dotos: [Doto] = ContentView.makeDefaultDotos()
+    // MARK:- Environment vars and declarations
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: Doto.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Doto.date, ascending: true)
+        ]
+    ) var dotos: FetchedResults<Doto>
     @State var modalOpen: Bool = false
     
+    // MARK:- View body
     var body: some View {
         NavigationView {
             List {
-                ForEach(dotos, id: \.id) { doto in
-                    DotoRow(doto: doto)
+                ForEach(dotos, id: \.id) {
+                    DotoRow(doto: $0)
                 }.onDelete(perform: deleteDoto)
             }
             .navigationBarTitle(Text("Doto List"))
@@ -35,21 +42,37 @@ struct ContentView: View {
         }
     }
     
+    // MARK:- Delete function
     func deleteDoto(at offsets: IndexSet) {
-        dotos.remove(atOffsets: offsets)
-    }
-    
-    func addDoto(title: String, content: String, date: Date) {
-        let newDoto = Doto(id: UUID(), title: title, content: content, date: date)
-        dotos.append(newDoto)
-    }
-    
-    static func makeDefaultDotos() -> [Doto] {
-        let dotoOne = Doto(id: UUID(), title: "Doto one", content: "This is the first Doto", date: Date())
-        let dotoTwo = Doto(id: UUID(), title: "Doto two", content: "Second doto of the day", date: Date().addingTimeInterval(.pi))
+        offsets.forEach { index in
+            let doto = self.dotos[index]
+            self.managedObjectContext.delete(doto)
+        }
         
-        return [dotoOne, dotoTwo]
+        saveContext()
     }
+    
+    // MARK:- Add function
+    func addDoto(title: String, content: String, date: Date) {
+        let newDoto = Doto(context: managedObjectContext)
+        
+        newDoto.id = UUID()
+        newDoto.title = title
+        newDoto.content = content
+        newDoto.date = date
+        
+        saveContext()
+    }
+    
+    // MARK:- Managed object saving support
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object: \(error)")
+        }
+    }
+    
 }
 
 

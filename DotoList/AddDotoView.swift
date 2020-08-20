@@ -10,12 +10,15 @@ import SwiftUI
 import Foundation
 
 struct AddDotoView: View {
+    
+    // MARK:- State declarations
     @State var title: String = ""
     @State var content: String = ""
     @State var date: Date = Date()
     @State var alertOpen: Bool = false
     let onComplete: (String, String, Date) -> Void
     
+    // MARK:- View body
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -36,6 +39,7 @@ struct AddDotoView: View {
         }
     }
     
+    // MARK:- Empty title checking and saving
     private func addDotoAction() {
         if title.isEmpty {
             self.alertOpen = true

@@ -21,12 +21,21 @@ struct DotoRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(doto.title).font(.headline)
+                doto.title.map(Text.init)?
+                    .font(.headline)
+                
                 Spacer()
-                Text(doto.content).font(.subheadline).fontWeight(.light).foregroundColor(.gray)
+                
+                doto.content.map(Text.init)?
+                    .fontWeight(.light)
+                    .foregroundColor(.gray)
+                    .font(.subheadline)
             }
             Spacer()
-            Text("\(doto.date, formatter: Self.dateFormat)").fontWeight(.light)
+            doto.date.map {
+                Text(Self.dateFormat.string(from: $0))
+                }?
+                .fontWeight(.light)
         }.padding(.vertical)
     }
 }
