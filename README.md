@@ -11,7 +11,7 @@ This app is written using Apple's latest [SwiftUI framework](https://developer.a
 Core Data simplifies local data handling with a persistent store, without having to administer a database directly.
 
 <p align="center">
-    <img src="https://docs-assets.developer.apple.com/published/7d6b410668/95d28eec-4652-4824-bac8-a413ede649ea.png" width="100" />
+    <img src="https://docs-assets.developer.apple.com/published/7d6b410668/95d28eec-4652-4824-bac8-a413ede649ea.png" width="200" />
 </p>
 
 ## Screenshots
